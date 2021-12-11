@@ -4,7 +4,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn
 } from 'typeorm';
+
+import Operation from './Operation';
 
 @Entity('armies')
 class Army {
@@ -12,7 +16,14 @@ class Army {
   id: string;
 
   @Column()
-  name: string;
+  id_operation: string;
+
+  @ManyToOne(() => Operation)
+  @JoinColumn({ name: 'id_operation' })
+  operation: Operation;
+
+  @Column()
+  army: string;
 
   @Column()
   description: string;
@@ -24,7 +35,7 @@ class Army {
   logo: string;
 
   @Column()
-  loadout_image: string;
+  loadout: string;
 
   @Column()
   status: string;

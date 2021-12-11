@@ -14,7 +14,7 @@ interface RequestDTO {
   password: string;
 }
 
-class CreateUserService {
+export class CreateUserService {
   public async execute({
     name,
     nickname,
@@ -31,7 +31,7 @@ class CreateUserService {
 
     if (checkUserExists) {
       throw new AppError('Email adress already used.');
-    }
+    };
 
     const hashedPassword = await hash(password, 8);
 
@@ -49,5 +49,3 @@ class CreateUserService {
     return user;
   }
 }
-
-export default CreateUserService;

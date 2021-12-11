@@ -14,6 +14,10 @@ export default class CreateArmies1626739047800 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'id_operation',
+            type: 'uuid',
+          },
+          {
             name: 'army',
             type: 'varchar',
           },
@@ -28,12 +32,12 @@ export default class CreateArmies1626739047800 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'logo_picture',
+            name: 'logo',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'loadout_picture',
+            name: 'loadout',
             type: 'varchar',
             isNullable: true,
           },

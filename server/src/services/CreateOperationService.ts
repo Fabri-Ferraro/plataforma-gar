@@ -3,39 +3,34 @@ import { getRepository } from 'typeorm';
 import AppError from '../errors/AppError';
 
 import Operation from '../models/Operation';
-import CreateUserOperationService from './CreateUserOperationService';
 
 interface RequestDTO {
-  name: string;
+  operation: string;
   description: string;
-  id_user: string;
 }
 
-class CreateOperationService {
+export class CreateOperationService {
   public async execute({
-    name,
+    operation,
     description,
-    id_user,
   }: RequestDTO): Promise<Operation> {
     const operationsRepository = getRepository(Operation);
 
     const checkOperationExists = await operationsRepository.findOne({
-      where: { name },
+      where: { operation },
     });
 
     if (checkOperationExists) {
       throw new AppError('Operation already exists.');
     }
 
-    const operation = operationsRepository.create({
-      name,
+    const operationCreated = operationsRepository.create({
+      operation,
       description,
     });
 
-    await operationsRepository.save(operation);
+    await operationsRepository.save(operationCreated);
 
-    return operation;
+    return operationCreated;
   }
 }
-
-export default CreateOperationService;

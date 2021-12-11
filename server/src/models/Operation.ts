@@ -12,7 +12,7 @@ class Operation {
   id: string;
 
   @Column()
-  name: string;
+  operation: string;
 
   @Column()
   description: string;

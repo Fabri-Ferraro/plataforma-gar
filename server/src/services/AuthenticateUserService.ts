@@ -17,7 +17,7 @@ interface Response {
   token: string;
 }
 
-class AuthenticateUserService {
+export class AuthenticateUserService {
   public async execute({ email, password }: RequestDTO): Promise<Response> {
     const usersRepository = getRepository(User);
 
@@ -46,4 +46,3 @@ class AuthenticateUserService {
     };
   }
 }
-export default AuthenticateUserService;
