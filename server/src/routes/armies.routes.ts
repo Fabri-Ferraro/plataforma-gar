@@ -3,7 +3,7 @@ import multer from "multer";
 import uploadConfig from '../config/upload';
 
 import { CreateArmyService } from "../services/CreateArmyService";
-import { ShowArmiesByOperationIdService } from "../services/ShowArmiesByOperationId";
+import { ShowArmiesByOperationIdService } from "../services/ShowArmiesByOperationIdService";
 import { UpdateArmyService } from "../services/UpdateArmyService";
 import { UpdateArmyLogoService } from "../services/UpdateArmyLogoService";
 import { UpdateArmyLoadoutService } from "../services/UpdateArmyLoadoutService";
@@ -27,7 +27,6 @@ armiesRouter.post('/:id_operation', ensureAuthenticated, async (request, respons
   });
 
   return response.json(armyCreated);
-
 });
 
 armiesRouter.get('/:id_operation', ensureAuthenticated, async (request, response) => {
@@ -40,8 +39,8 @@ armiesRouter.get('/:id_operation', ensureAuthenticated, async (request, response
   return response.json(armies);
 });
 
-armiesRouter.patch('/:id', ensureAuthenticated, async (request, response) => {
-  const { army, description } = request.body;
+armiesRouter.put('/:id', ensureAuthenticated, async (request, response) => {
+  const { army, description, status } = request.body;
   const { id } = request.params;
 
   const updateArmy = new UpdateArmyService();
@@ -50,6 +49,7 @@ armiesRouter.patch('/:id', ensureAuthenticated, async (request, response) => {
     id,
     army,
     description,
+    status,
   });
 
   return response.json({ message: 'Army updated.' });

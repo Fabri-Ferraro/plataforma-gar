@@ -7,12 +7,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Army from './Army';
 import Operation from './Operation';
-import User from './User';
 
-@Entity('operation_army_users')
-class OperationArmyUser {
+@Entity('operation_schedule')
+class OperationSchedule {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -24,24 +22,13 @@ class OperationArmyUser {
   operation: Operation;
 
   @Column()
-  id_army: string;
-
-  @ManyToOne(() => Army)
-  @JoinColumn({ name: 'id_army' })
-  army: Army;
+  schedule: string;
 
   @Column()
-  id_user: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'id_user' })
-  user: User;
+  value: string;
 
   @Column()
-  inscription: number;
-
-  @Column()
-  status: string;
+  order: number;
 
   @CreateDateColumn()
   created_at: Date;
@@ -50,4 +37,4 @@ class OperationArmyUser {
   updated_at: Date;
 }
 
-export default OperationArmyUser;
+export default OperationSchedule;

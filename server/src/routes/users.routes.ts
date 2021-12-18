@@ -6,6 +6,7 @@ import { CreateUserService } from '../services/CreateUserService';
 import { UpdateUserAvatarService } from '../services/UpdateUserAvatarService';
 import { UpdateProfileService } from '../services/UpdateProfileService';
 import { UpdatePasswordService } from '../services/UpdatePasswordService';
+import { ShowMyUserService } from '../services/ShowMyUserService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
@@ -13,7 +14,18 @@ const usersRouter = Router();
 const upload = multer(uploadConfig);
 
 usersRouter.post('/', async (request, response) => {
-  const { name, nickname, email, birth_date, team, password } = request.body;
+  const {
+    name,
+    nickname,
+    email,
+    birth_date,
+    team,
+    contact_phone,
+    emergency_contact_name,
+    emergency_contact_phone,
+    blood_type,
+    password
+  } = request.body;
 
   const createUser = new CreateUserService();
 
@@ -24,6 +36,10 @@ usersRouter.post('/', async (request, response) => {
     birth_date,
     team,
     password,
+    contact_phone,
+    emergency_contact_name,
+    emergency_contact_phone,
+    blood_type,
   });
 
   delete user.password;
@@ -49,6 +65,18 @@ usersRouter.patch(
   },
 );
 
+usersRouter.get('/profile', ensureAuthenticated, async (request, response) => {
+  const showMyUser = new ShowMyUserService();
+
+  const user = await showMyUser.execute({
+    id: request.user.id,
+  });
+
+  delete user.password;
+
+  return response.json(user);
+});
+
 usersRouter.patch('/profile', ensureAuthenticated, async (request, response) => {
   const {
     name,
@@ -56,9 +84,10 @@ usersRouter.patch('/profile', ensureAuthenticated, async (request, response) => 
     email,
     birth_date,
     team,
-    password,
-    new_password,
-    confirm_new_password
+    tel_contato,
+    contato_emergencia_nome,
+    contato_emergencia_tel,
+    tipo_sanguineo,
   } = request.body;
 
   const profile = new UpdateProfileService();

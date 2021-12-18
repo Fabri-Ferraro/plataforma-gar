@@ -12,6 +12,10 @@ interface RequestDTO {
   birth_date: Date;
   team: string;
   password: string;
+  contact_phone: number
+  emergency_contact_name: string
+  emergency_contact_phone: number
+  blood_type: string
 }
 
 export class CreateUserService {
@@ -21,6 +25,10 @@ export class CreateUserService {
     email,
     birth_date,
     team,
+    contact_phone,
+    emergency_contact_name,
+    emergency_contact_phone,
+    blood_type,
     password,
   }: RequestDTO): Promise<User> {
     const usersRepository = getRepository(User);
@@ -41,6 +49,10 @@ export class CreateUserService {
       email,
       birth_date,
       team,
+      contact_phone,
+      emergency_contact_name,
+      emergency_contact_phone,
+      blood_type,
       password: hashedPassword,
     });
 

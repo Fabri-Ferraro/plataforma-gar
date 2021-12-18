@@ -27,9 +27,15 @@ export default class CreateOperationArmyUsers1626739065566
             type: 'uuid',
           },
           {
+            name: 'inscription',
+            type: 'int',
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
             name: 'status',
             type: 'varchar',
-            isNullable: true,
+            default: "'A'",
           },
           {
             name: 'created_at',

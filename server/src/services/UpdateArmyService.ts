@@ -8,6 +8,7 @@ interface RequestDTO {
   id: string;
   army: string;
   description: string;
+  status: string;
 }
 
 export class UpdateArmyService {
@@ -15,6 +16,7 @@ export class UpdateArmyService {
     id,
     army,
     description,
+    status,
   }: RequestDTO): Promise<Army> {
     const armiesRepository = getRepository(Army);
 
@@ -26,6 +28,7 @@ export class UpdateArmyService {
 
     armyUpdated.army = army;
     armyUpdated.description = description;
+    armyUpdated.status = status;
 
     await armiesRepository.save(armyUpdated);
 

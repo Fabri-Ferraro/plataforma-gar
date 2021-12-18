@@ -1,10 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export default class CreateArmies1626739047800 implements MigrationInterface {
+export class CreateOperationSchedule1639207210679 implements MigrationInterface {
+
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'armies',
+        name: 'operation_schedule',
         columns: [
           {
             name: 'id',
@@ -18,33 +19,16 @@ export default class CreateArmies1626739047800 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'army',
+            name: 'schedule',
             type: 'varchar',
           },
           {
-            name: 'description',
+            name: 'value',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'loadout_description',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'logo',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'loadout',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'status',
-            type: 'varchar',
-            default: "'A'",
+            name: 'order',
+            type: 'int',
           },
           {
             name: 'created_at',
@@ -62,6 +46,6 @@ export default class CreateArmies1626739047800 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('armies');
+    await queryRunner.dropTable('operation_schedule');
   }
 }

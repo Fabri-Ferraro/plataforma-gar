@@ -24,14 +24,74 @@ export default class CreateOperations1626739040670
             isNullable: true,
           },
           {
-            name: 'logo_picture',
+            name: 'date',
+            type: 'timestamp',
+            isNullable: true,
+          },
+          {
+            name: 'price',
+            type: 'decimal',
+            isNullable: true,
+          },
+          {
+            name: 'logo',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'field_name',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'address',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'number',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'complement',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'district',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'city',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'reference',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'zip_code',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'state',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'mgrs',
             type: 'varchar',
             isNullable: true,
           },
           {
             name: 'status',
             type: 'varchar',
-            isNullable: true,
+            default: "'A'",
           },
           {
             name: 'created_at',

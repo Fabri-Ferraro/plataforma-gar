@@ -27,6 +27,18 @@ class User {
   team: string;
 
   @Column()
+  contact_phone: number;
+
+  @Column()
+  emergency_contact_name: string;
+
+  @Column()
+  emergency_contact_phone: number;
+
+  @Column()
+  blood_type: string;
+
+  @Column()
   password: string;
 
   @Column()

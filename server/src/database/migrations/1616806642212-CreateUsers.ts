@@ -42,13 +42,33 @@ export default class CreateUsers1616806642212 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'contact_phone',
+            type: 'int',
+            isNullable: true,
+          },
+          {
+            name: 'emergency_contact_name',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'emergency_contact_phone',
+            type: 'int',
+            isNullable: true,
+          },
+          {
+            name: 'blood_type',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'password',
             type: 'varchar',
           },
           {
             name: 'status',
             type: 'varchar',
-            isNullable: true,
+            default: "'A'",
           },
           {
             name: 'created_at',

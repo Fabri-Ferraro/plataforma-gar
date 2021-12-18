@@ -18,19 +18,46 @@ operationsRouter.get('/show', ensureAuthenticated, async (request, response) => 
 });
 
 operationsRouter.post('/', ensureAuthenticated, async (request, response) => {
-  const { operation, description } = request.body;
+  const {
+    operation,
+    description,
+    date,
+    price,
+    field_name,
+    address,
+    number,
+    complement,
+    district,
+    city,
+    reference,
+    zip_code,
+    state,
+    mgrs,
+  } = request.body;
 
   const createOperation = new CreateOperationService();
 
   const operationCreated = await createOperation.execute({
     operation,
     description,
+    date,
+    price,
+    field_name,
+    address,
+    number,
+    complement,
+    district,
+    city,
+    reference,
+    zip_code,
+    state,
+    mgrs,
   });
 
   return response.json(operationCreated);
 });
 
-operationsRouter.patch('/:id', ensureAuthenticated, async (request, response) => {
+operationsRouter.put('/:id', ensureAuthenticated, async (request, response) => {
   const { operation, description } = request.body;
   const { id } = request.params;
 
@@ -45,7 +72,7 @@ operationsRouter.patch('/:id', ensureAuthenticated, async (request, response) =>
   return response.json({ message: 'Operation updated.' });
 });
 
-operationsRouter.post('/register_user', ensureAuthenticated, async (request, response) => {
+operationsRouter.post('/operation_subscription', ensureAuthenticated, async (request, response) => {
   const { id_operation, id_army } = request.query;
 
   const createOperationArmyUser = new CreateOperationArmyUserService();
@@ -56,7 +83,7 @@ operationsRouter.post('/register_user', ensureAuthenticated, async (request, res
     id_user: request.user.id,
   });
 
-  return response.json({ message: 'Registered successfully.' });
+  return response.json({ message: 'Subscription successfully.' });
 });
 
 

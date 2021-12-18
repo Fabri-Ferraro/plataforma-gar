@@ -26,7 +26,7 @@ export class CreateOperationArmyUserService {
 
     if(checkOperationUserExists) {
       throw new AppError('User already registered in this operation.');
-    }
+    };
 
     const checkArmyExistsInOperation = await armyRepository.findOne({
       where: { id_operation, id: id_army },
@@ -34,7 +34,11 @@ export class CreateOperationArmyUserService {
 
     if(!checkArmyExistsInOperation) {
       throw new AppError(`This army isn't registered in this operation.`);
-    }
+    };
+
+    if (checkArmyExistsInOperation.status === "F") {
+      throw new AppError(`This army is full.`);
+    };
 
     const operationArmyUserCreated = operatioArmyUserRepository.create({
       id_operation,

@@ -25,7 +25,7 @@ export default class CreateOperationArmies1626739056664
           {
             name: 'status',
             type: 'varchar',
-            isNullable: true,
+            default: "'A'",
           },
           {
             name: 'created_at',
